@@ -80,6 +80,11 @@ Update submodule
 git submodule update --remote
 ```
 
+Pull
+```shell
+git pull --recurse-submodules
+```
+
 #### Gradle
 
 Multi module Gradle project

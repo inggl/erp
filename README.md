@@ -187,14 +187,15 @@ docker run --name erp-order -e "JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_so
 ```
 
 ### Git
-Disable git file tracking
+Disable root project submodule git tracking
 ```
-git update-index --assume-unchanged <file>
+git update-index --assume-unchanged <path>
 ```
 
 ```
-git update-index --no-assume-unchaged <file>
+git update-index --no-assume-unchaged <path>
 ```
+
 
 ### Security
 #### OAuth2

@@ -55,9 +55,10 @@ docker-compose push
 - __Storage__ - Go Project
 - __Report__ - Java Spring Project
 - __Tracking__ - Node.js + Express Project
+- __Analysis__ - Java Spring Cloud Project
 
 #### Apps
-- __Order__ - React Project
+- __Erp App__ - React Project
 
 ## Architecture
 
@@ -65,7 +66,7 @@ docker-compose push
 
 #### Git submodules
 
-> Mobile App
+> Erp App
 
 Add new submodule
 

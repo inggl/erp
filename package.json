@@ -12,6 +12,7 @@
     "build": "lerna run build",
     "start": "lerna run --parallel start",
     "watch": "lerna run --parallel watch",
+    "dev": "lerna run --parallel dev",
     "postinstall": "husky install",
     "prepare": "husky install"
   },

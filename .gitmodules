@@ -1,0 +1,3 @@
+[submodule "packages/erp-app"]
+	path = packages/erp-app
+	url = https://github.com/inggl/erp-app

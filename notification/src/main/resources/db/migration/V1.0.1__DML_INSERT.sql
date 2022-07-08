@@ -1,0 +1,1 @@
+insert into archive (archive_id, title, message, created_by, created_date, last_modified_by, last_modified_date) values ('be46d047-b959-45d5-ae58-46df5c9f7e65', 'Notification 1', 'Message 1' ,'SYSTEM', '2022-02-15 14:43:22.310444', null, null)

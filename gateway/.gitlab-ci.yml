@@ -1,0 +1,106 @@
+image: tomcat:alpine
+
+variables:
+  APP_NAME: "gateway"
+  APP_PATH: ""
+  SSH_PRIVATE_KEY: ""
+  SSH_HOST: ""
+  SSH_USER: ""
+  DOCKER_AUTH_CONFIG: ""
+  DOCKER_REGISTRY: ""
+  DOCKER_REGISTRY_USER: ""
+  DOCKER_REGISTRY_PASS: ""
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+.build:
+  stage: build
+  tags:
+    - docker
+  only:
+    - main
+    - master
+    - develop
+  script:
+    - ./gradlew :gateway:assemble
+  artifacts:
+    paths:
+      - "*/build/libs"
+    expire_in: 30 minutes
+
+.test:
+  stage: test
+  only:
+    - main
+    - master
+    - develop
+  tags:
+    - docker
+  script:
+    - ./gradlew check
+
+.tomcat-deploy:
+  stage: deploy
+  image: alpine:latest
+  only:
+    - main
+    - master
+    - develop
+  tags:
+    - docker
+  when: manual
+  before_script:
+    - which ssh-agent || (apk add --update --no-cache openssh)
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - scp build/libs/$APP_NAME.war $SSH_USER@$SSH_HOST:$APP_PATH
+
+.docker-deploy:
+  stage: deploy
+  image: docker:stable
+  tags:
+    - docker
+  only:
+    - main
+    - master
+    - develop
+  services:
+    - name: docker:dind
+      alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
+  when: manual
+  before_script:
+    - which ssh-agent || (apk add --update --no-cache openssh)
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - docker info
+    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY
+  script:
+    - docker build -t $DOCKER_REGISTRY/$APP_NAME:latest .
+    - docker push $DOCKER_REGISTRY/$APP_NAME:latest
+
+after_script:
+  - echo "End CI"

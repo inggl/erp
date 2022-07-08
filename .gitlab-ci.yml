@@ -1,0 +1,29 @@
+stages:
+  - trigger
+
+gateway:
+  stage: trigger
+  inherit:
+    variables: true
+  trigger:
+    include: gateway/.gitlab-ci.yml
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $PROJECT == "gateway"
+
+order:
+  stage: trigger
+  inherit:
+    variables: true
+  trigger:
+    include: order/.gitlab-ci.yml
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $PROJECT == "order"
+
+notification:
+  stage: trigger
+  inherit:
+    variables: true
+  trigger:
+    include: notification/.gitlab-ci.yml
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $PROJECT == "notification"

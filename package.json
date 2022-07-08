@@ -1,0 +1,22 @@
+{
+  "name": "@inggl/root",
+  "private": true,
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lerna": "^5.1.1",
+    "lint-staged": "^13.0.1"
+  },
+  "scripts": {
+    "clean": "lerna run --parallel clean",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "start": "lerna run --parallel start",
+    "watch": "lerna run --parallel watch",
+    "postinstall": "husky install",
+    "prepare": "husky install"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "yarn@3.2.1"
+}

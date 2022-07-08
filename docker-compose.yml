@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  gateway:
+    image: ${REGISTRY:-localhost:5000}/inggl/erp-gateway
+    container_name: erp-gateway
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+
+  order:
+    image: ${REGISTRY:-localhost:5000}/inggl/erp-order
+    container_name: erp-order
+    build:
+      context: ./order
+      dockerfile: Dockerfile
+
+  notification:
+    image: ${REGISTRY:-localhost:5000}/inggl/erp-notification
+    container_name: erp-notification
+    build:
+      context: ./notification
+      dockerfile: Dockerfile
+
+  report:
+    image: ${REGISTRY:-localhost:5000}/inggl/erp-report
+    container_name: erp-report
+    build:
+      context: ./report
+      dockerfile: Dockerfile
+
+  order_app:
+    image: ${REGISTRY:-localhost:5000}/inggl/erp-order-app
+    container_name: erp-app
+    build:
+      context: ./packages/erp-app
+      dockerfile: Dockerfile

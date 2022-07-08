@@ -1,0 +1,25 @@
+quarkus:
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: postgres
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/erp?currentSchema=notification
+  flyway:
+    clean-at-start: true
+    migrate-at-start: true
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    schemas: notification
+  mongodb:
+    connection-string: mongodb://localhost:27017
+    database: erp
+    credentials:
+      username: mongo
+      password: mongo
+
+"%test":
+
+"%dev":
+
+"%prod":

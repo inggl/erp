@@ -1,0 +1,13 @@
+spring:
+  config:
+    activate:
+      on-profile: db
+  datasource:
+    order:
+      url: jdbc:postgresql://localhost:5432/erp?currentSchema=order
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+  cloud:
+    task:
+      initialize-enabled: true

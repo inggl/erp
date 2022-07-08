@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'io.quarkus' version "${quarkusPlatformVersion}"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-arc'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    implementation("io.quarkus:quarkus-resteasy-reactive")
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    testImplementation 'io.rest-assured:rest-assured:5.0.1'
+    implementation("io.quarkus:quarkus-config-yaml")
+    implementation("io.quarkus:quarkus-flyway")
+    implementation 'io.quarkus:quarkus-hibernate-orm-panache'
+    implementation("io.quarkus:quarkus-mongodb-panache")
+    implementation("io.quarkus:quarkus-jdbc-postgresql")
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    implementation("io.quarkus:quarkus-smallrye-openapi")
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+group 'com.github.inggl.erp'
+version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}

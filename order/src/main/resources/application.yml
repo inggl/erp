@@ -1,0 +1,113 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    clean-on-validation-error: true
+    schemas: order
+
+---
+spring:
+  config:
+    activate:
+      on-profile: db
+  datasource:
+    url: jdbc:postgresql://localhost:5432/erp?currentSchema=order
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    clean-on-validation-error: true
+    schemas: order
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cache
+  redis:
+    host: localhost
+    port: 6379
+  cache:
+    redis:
+      time-to-live: 600000
+management:
+  health:
+    redis:
+      enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: amqp
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rabbitmq
+    password: rabbitmq
+management:
+  health:
+    rabbit:
+      enabled: true
+
+---
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8081
+        instance:
+          service-url: http://localhost:8081/api/order/
+          management-url: http://localhost:8081/api/order/actuator
+          health-url: http://localhost:8081/api/order/actuator/health
+  config:
+    activate:
+      on-profile: discovery
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: false
+      discovery:
+        enabled: true
+        instanceId: ${spring.application.name}:${random.value}
+        hostname: localhost
+        prefer-ip-address: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: oauth2
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost/keycloak/auth/realms/erp

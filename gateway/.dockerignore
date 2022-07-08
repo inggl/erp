@@ -1,0 +1,11 @@
+*
+!build/libs/dependency/BOOT-INF/lib
+!build/libs/dependency/BOOT-INF/classes
+!build/libs/dependency/META-INF
+
+!gradle
+!gradlew
+!gradlew.bat
+!build.gradle.kts
+!settings.gradle.kts
+!src

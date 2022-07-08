@@ -1,0 +1,77 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+              - "http://localhost:3000"
+            allowCredentials: false
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: order
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/order, /api/order/
+            - RewritePath=/api/order(?<segment>/?.*), $\{segment}
+---
+spring:
+  config:
+    activate:
+      on-profile: discovery
+  cloud:
+    gateway:
+      routes:
+        - id: order
+          uri: lb://order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/order, /api/order/
+            - RewritePath=/api/order(?<segment>/?.*), $\{segment}
+    consul:
+      enabled: true
+      host: localhost
+      port: 8500
+      config:
+        enabled: false
+      discovery:
+        enabled: true
+        instanceId: ${spring.application.name}:${random.value}
+        hostname: localhost
+        prefer-ip-address: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: oauth2
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost/keycloak/auth/realms/erp
+        registration:
+          erp-api:
+            client-id: erp-api
+            client-secret: ttv89zLAN3aIk50PDQCpWWNFRL6UaFET
+            provider: keycloak
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8081/login/oauth2/code/erp-api

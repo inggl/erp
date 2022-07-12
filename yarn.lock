@@ -381,6 +381,7 @@ __metadata:
     "@mui/icons-material": ^5.8.4
     "@mui/material": ^5.8.6
     "@reduxjs/toolkit": ^1.8.3
+    "@tanstack/react-table": ^8.2.3
     "@types/node": 18.0.3
     "@types/react": 18.0.15
     "@types/react-dom": 18.0.6
@@ -1969,6 +1970,25 @@ __metadata:
   dependencies:
     tslib: ^2.4.0
   checksum: 0b8c86ad03b17b8fe57dc4498e25dc294ea6bc42558a6b92d8fcd789351dac80199409bef38a2e3ac06aae0fedddfc0ab9c34409acbf74e55d1bbbd74f68b6b7
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-table@npm:^8.2.3":
+  version: 8.2.3
+  resolution: "@tanstack/react-table@npm:8.2.3"
+  dependencies:
+    "@tanstack/table-core": 8.2.3
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 5aa35cf945098d40278762adb8b1748d8a0bc412f7bb25ca90f50c28cce226d251894f20231d2b234298b25b8465b6283a44ebc1c80e5ff7946e9753ef5096fb
+  languageName: node
+  linkType: hard
+
+"@tanstack/table-core@npm:8.2.3":
+  version: 8.2.3
+  resolution: "@tanstack/table-core@npm:8.2.3"
+  checksum: a44be43165fafd98813287e3914c3d20eed379d4cdc0b2ab35bfa7d16bb41368bf83547295b8da955c125bf42c2a30b0931acf87f90a78c62b4b0dff14f567d5
   languageName: node
   linkType: hard
 

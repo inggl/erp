@@ -249,6 +249,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "@faker-js/faker@npm:7.3.0"
+  checksum: ef5b64af30ce0ec76cb22798fbbe50184946fac389b4d81235f9d8d9eaaa77d67a80f46954fa993996b7c774bae23314529a95a42a6b68794f0795976c9be82b
+  languageName: node
+  linkType: hard
+
 "@formatjs/ecma402-abstract@npm:1.11.8":
   version: 1.11.8
   resolution: "@formatjs/ecma402-abstract@npm:1.11.8"
@@ -378,10 +385,12 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.9.3
     "@emotion/styled": ^11.9.3
+    "@faker-js/faker": ^7.3.0
     "@mui/icons-material": ^5.8.4
     "@mui/material": ^5.8.6
     "@reduxjs/toolkit": ^1.8.3
     "@tanstack/react-table": ^8.2.3
+    "@types/lodash": ^4.14.182
     "@types/node": 18.0.3
     "@types/react": 18.0.15
     "@types/react-dom": 18.0.6
@@ -393,6 +402,7 @@ __metadata:
     flag-icons: ^6.6.2
     formik: ^2.2.9
     immer: ^9.0.15
+    lodash: ^4.17.21
     next: 12.2.1
     next-auth: ^4.7.0
     react: 18.2.0
@@ -2030,7 +2040,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.175":
+"@types/lodash@npm:^4.14.175, @types/lodash@npm:^4.14.182":
   version: 4.14.182
   resolution: "@types/lodash@npm:4.14.182"
   checksum: 7dd137aa9dbabd632408bd37009d984655164fa1ecc3f2b6eb94afe35bf0a5852cbab6183148d883e9c73a958b7fec9a9bcf7c8e45d41195add6a18c34958209

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "clean": "yarn workspaces foreach -vpiR run clean",
-    "build": "arn workspaces foreach -vtR run build",
+    "build": "yarn workspaces foreach -vtR run build",
     "start": "yarn workspaces foreach -vpiR run start",
     "watch": "yarn workspaces foreach -vpiR run watch",
     "dev": "yarn workspaces foreach -vpiR run dev",

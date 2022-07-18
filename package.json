@@ -6,11 +6,11 @@
     "lint-staged": "^13.0.1"
   },
   "scripts": {
-    "clean": "yarn workspaces foreach -vpiR run clean",
-    "build": "yarn workspaces foreach -vtR run build",
-    "start": "yarn workspaces foreach -vpiR run start",
-    "watch": "yarn workspaces foreach -vpiR run watch",
-    "dev": "yarn workspaces foreach -vpiR run dev",
+    "clean": "yarn workspaces foreach -vpi run clean",
+    "build": "yarn workspaces foreach -vt run build",
+    "start": "yarn workspaces foreach -vpi run start",
+    "watch": "yarn workspaces foreach -vpi run watch",
+    "dev": "yarn workspaces foreach -vpi run dev",
     "postinstall": "husky install",
     "prepare": "husky install"
   },

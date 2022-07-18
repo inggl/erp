@@ -196,6 +196,10 @@ git update-index --assume-unchanged <path>
 git update-index --no-assume-unchaged <path>
 ```
 
+Example:
+```shell
+git update-index --assume-unchanged packages/erp-app
+```
 
 ### Security
 #### OAuth2

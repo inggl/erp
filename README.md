@@ -12,7 +12,7 @@ Sample project
 ## Prerequisites
 - __Docker__
 - __Node.js__
-- __Yarn 2__
+- __Yarn 2+__
 - __PostgreSQL__
 - __Mongo__
   - Replicated instances
@@ -89,43 +89,8 @@ git pull --recurse-submodules
 
 Multi module Gradle project
 
-#### Module Federation
-
-Webpack5 + ESBuild
-
-#### Routing
-
-Single SPA with Module Federation Integration
-
-#### Lerna
-
-##### Package dependency installation
-
-```
-lerna add <dependency> --scope=<package_name> [--dev]
-```
-
-or
-
-```
-lerna exec -- yarn add [-D] <dependency> --scope=<package_name>
-```
-
-Example:
-
-```shell
-lerna exec -- yarn add sass --scope=@inggl/order-app
-```
-
-```shell
-lerna exec -- yarn add -D flag-icons --scope=@inggl/order-app
-```
-
-##### Global dependency installation
-
-```
-yarn add [-D] <dependency>
-```
+#### Yarn
+Yarn 2+ workspaces with pnp enabled
 
 #### Husky
 

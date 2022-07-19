@@ -6,16 +6,14 @@
     "lint-staged": "^13.0.1"
   },
   "scripts": {
-    "clean": "yarn workspaces foreach -vpi run clean",
-    "build": "yarn workspaces foreach -vt run build",
-    "start": "yarn workspaces foreach -vpi run start",
-    "watch": "yarn workspaces foreach -vpi run watch",
-    "dev": "yarn workspaces foreach -vpi run dev",
+    "clean": "lerna run --parallel clean",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "start": "lerna run --parallel start",
+    "watch": "lerna run --parallel watch",
+    "dev": "lerna run --parallel dev",
     "postinstall": "husky install",
     "prepare": "husky install"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "packageManager": "yarn@3.2.1"
 }

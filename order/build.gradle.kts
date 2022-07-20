@@ -34,7 +34,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery")
     implementation("org.springframework.cloud:spring-cloud-starter-consul-config")
-    implementation("org.springframework.cloud:spring-cloud-starter-kubernetes")
     testImplementation("org.springframework.security:spring-security-test:5.7.1")
     testImplementation("org.springframework.amqp:spring-rabbit-test:2.4.4")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(express.static("public"));
 
-const port = process.env.PORT || 8086;
+const port = process.env.PORT || 8087;
 
 app.get("/", (req: Request, res: Response) => {
     res.send();

@@ -163,7 +163,7 @@ git update-index --no-assume-unchaged <path>
 
 Example:
 ```shell
-git update-index --assume-unchanged packages/erp-app && git update-index --assume-unchanged packages/ngx-erp
+git update-index --assume-unchanged charts && git update-index --assume-unchanged packages/erp-app && git update-index --assume-unchanged packages/ngx-erp
 ```
 
 ### Security

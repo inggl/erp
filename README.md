@@ -74,6 +74,11 @@ Add new submodule
 git submodule add <repo_url> <path>
 ```
 
+or
+```
+git submodule add -b <branch> <repo_url> <path>
+```
+
 Update submodule
 
 ```shell

@@ -7,3 +7,4 @@
 [submodule "charts"]
 	path = charts
 	url = https://github.com/inggl/erp-charts
+	branch = gh-pages

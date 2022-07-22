@@ -4,6 +4,3 @@
 [submodule "packages/ngx-erp"]
 	path = packages/ngx-erp
 	url = https://github.com/inggl/ngx-erp
-[submodule "charts"]
-	path = charts
-	url = https://github.com/inggl/erp-charts

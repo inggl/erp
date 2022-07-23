@@ -85,6 +85,10 @@ Update submodule
 git submodule update --remote
 ```
 
+```shell
+git submodule foreach --recursive "git checkout develop || true"
+```
+
 Pull
 ```shell
 git pull --recurse-submodules
@@ -95,7 +99,7 @@ git pull --recurse-submodules
 Multi module Gradle project
 
 #### Yarn
-Yarn 2+ workspaces with pnp enabled
+Yarn 2+ workspaces + pnp + Lerna
 
 #### Husky
 

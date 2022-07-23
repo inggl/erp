@@ -22,9 +22,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan("tiny"));
 app.use(express.static("public"));
 app.use(helmet());
+app.use(expressSession);
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
-app.use(expressSession);
 
 // Create strategy
 client.then(value => {
@@ -43,11 +43,11 @@ passport.deserializeUser((user: Express.User | false | null, done) => {
 
 const port = process.env.PORT || 8087;
 
-app.get("/", authenticated, (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
     res.send();
 });
 
-app.use("/orders", ordersRouter);
+app.use("/orders", authenticated, ordersRouter);
 
 app.listen(port, () => {
     logger.info(`Server is running on port ${port}`)

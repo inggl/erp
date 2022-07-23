@@ -1,17 +1,15 @@
-import {Client, Issuer} from "openid-client";
+import OAuth2Strategy from "passport-oauth2";
+import * as process from "process";
 
-// Create issuer
-import process from "process";
-
-const client: Promise<Client> = Issuer.discover(process.env.KEYCLOAK_ISSUER ? process.env.KEYCLOAK_ISSUER : "http://localhost/auth/realms/erp").then(keycloakIssuer => {
-    // Create client
-    return new Promise((resolve) => {
-      resolve(new keycloakIssuer.Client({
-          client_id: process.env.KEYCLOAK_CLIENT_ID ? process.env.KEYCLOAK_CLIENT_ID : 'erp-api',
-          client_secret: process.env.KEYCLOAK_CLIENT_ID ? process.env.KEYCLOAK_SECRET : '',
-          response_types: ['code']
-      }));
-    })
+const keycloakStrategy = new OAuth2Strategy({
+    authorizationURL: process.env.KEYCLOAK_AUTHORIZATION_ENDPOINT ? process.env.KEYCLOAK_AUTHORIZATION_ENDPOINT : 'http://localhost/auth/realms/erp/protocol/openid-connect/auth',
+    tokenURL: process.env.KEYCLOAK_TOKEN_ENDPOINT ? process.env.KEYCLOAK_TOKEN_ENDPOINT : 'http://localhost/auth/realms/erp/protocol/openid-connect/token',
+    clientID: process.env.KEYCLOAK_CLIENT_ID ? process.env.KEYCLOAK_CLIENT_ID : 'erp-api',
+    clientSecret: process.env.KEYCLOAK_CLIENT_SECRET ? process.env.KEYCLOAK_CLIENT_SECRET : '',
+}, (accessToken, refreshToken, results, profile, verified) => {
+    verified(null, undefined, undefined);
 });
 
-export default client;
+export {
+    keycloakStrategy
+};

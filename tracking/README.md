@@ -1,7 +1,6 @@
 # Tracking
 - Express
-- Express Session
-- OpenID Client
+- Passport
 - Helmet
 - Swagger
 - Winston

@@ -22,3 +22,6 @@ yarn add -D nodemon typescript @types/express @types/node ts-node
 ```shell
 tsc --init
 ```
+
+## Configuration
+Edit `"outDir": "./build"` and `"rootDir": "./src"` in `tsconfig.json`

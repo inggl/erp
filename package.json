@@ -13,9 +13,9 @@
     "lerna-start": "lerna run --parallel start",
     "lerna-watch": "lerna run --parallel watch",
     "lerna-dev": "lerna run --parallel dev",
-    "workspace-build": "yarn workspaces foreach run build",
-    "workspace-start": "yarn workspaces foreach run start",
-    "workspace-dev": "yarn workspaces foreach run dev",
+    "workspace-build": "yarn workspaces foreach -vt run build",
+    "workspace-start": "yarn workspaces foreach -vpi run start",
+    "workspace-dev": "yarn workspaces foreach -vpi run dev",
     "postinstall": "husky install",
     "prepare": "husky install"
   },

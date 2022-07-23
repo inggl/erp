@@ -1,5 +1,8 @@
 # Tracking
 - Express
+- Express Session
+- OpenID Client
+- Helmet
 - Swagger
 - Winston
 - Morgan

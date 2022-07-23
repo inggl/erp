@@ -9,6 +9,7 @@ import expressSession from "./config/session";
 import {Strategy} from "openid-client";
 import client from "./config/auth";
 import authenticated from "./middlewares/auth.middleware";
+import helmet from "helmet";
 
 // Config env
 dotenv.config();
@@ -20,15 +21,17 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan("tiny"));
 app.use(express.static("public"));
-app.use()
+app.use(helmet());
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 app.use(expressSession);
 
 // Create strategy
-passport.use('oidc', new Strategy({client}, (tokenSet: { claims: () => any; }, userInfo: any, done: (arg0: null, arg1: any) => any) => {
-    return done(null, tokenSet.claims())
-}));
+client.then(value => {
+    passport.use('oidc', new Strategy({client: value}, (tokenSet: { claims: () => any; }, userInfo: any, done: (arg0: null, arg1: any) => any) => {
+        return done(null, tokenSet.claims())
+    }));
+});
 
 passport.serializeUser((user: Express.User, done) => {
    done(null, user);

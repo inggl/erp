@@ -7,6 +7,7 @@
     "lint-staged": "^13.0.1"
   },
   "scripts": {
+    "lerna-install": "lerna exec -- yarn install",
     "lerna-clean": "lerna run --parallel clean",
     "lerna-bootstrap": "lerna bootstrap",
     "lerna-build": "lerna run build",

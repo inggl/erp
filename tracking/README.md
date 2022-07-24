@@ -5,6 +5,7 @@
 - Swagger
 - Winston
 - Morgan
+- Prisma
 
 ## Init
 ```shell
@@ -27,3 +28,14 @@ tsc --init
 
 ## Configuration
 Edit `"outDir": "./build"` and `"rootDir": "./src"` in `tsconfig.json`
+
+## Prisma
+### Init
+```shell
+npx prisma init
+```
+
+### Generate
+```shell
+npx prisma generate
+```

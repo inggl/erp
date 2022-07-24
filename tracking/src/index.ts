@@ -6,7 +6,7 @@ import ordersRouter from './routes/order.routes';
 import passport from 'passport';
 import * as process from "process";
 import helmet from "helmet";
-import {keycloakStrategy} from "./config/auth";
+import {jwtStrategy} from "./config/auth";
 
 // Config env
 dotenv.config();
@@ -23,13 +23,13 @@ app.use(passport.initialize());
 
 const port = process.env.PORT || 8087;
 
-passport.use(keycloakStrategy);
+passport.use(jwtStrategy);
 
 app.get("/", (req: Request, res: Response) => {
     res.send();
 });
 
-app.use("/orders", passport.authenticate('oauth2', {session: false}), ordersRouter);
+app.use("/orders", passport.authenticate(['jwt'], {session: false}), ordersRouter);
 
 app.listen(port, () => {
     logger.info(`Server is running on port ${port}`)

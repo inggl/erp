@@ -1,15 +1,16 @@
-import OAuth2Strategy from "passport-oauth2";
 import * as process from "process";
+import * as passportJwt from "passport-jwt";
+import fs from 'fs';
+import path from 'path';
 
-const keycloakStrategy = new OAuth2Strategy({
-    authorizationURL: process.env.KEYCLOAK_AUTHORIZATION_ENDPOINT ? process.env.KEYCLOAK_AUTHORIZATION_ENDPOINT : 'http://localhost/auth/realms/erp/protocol/openid-connect/auth',
-    tokenURL: process.env.KEYCLOAK_TOKEN_ENDPOINT ? process.env.KEYCLOAK_TOKEN_ENDPOINT : 'http://localhost/auth/realms/erp/protocol/openid-connect/token',
-    clientID: process.env.KEYCLOAK_CLIENT_ID ? process.env.KEYCLOAK_CLIENT_ID : 'erp-api',
-    clientSecret: process.env.KEYCLOAK_CLIENT_SECRET ? process.env.KEYCLOAK_CLIENT_SECRET : '',
-}, (accessToken, refreshToken, results, profile, verified) => {
-    verified(null, undefined, undefined);
+const jwtStrategy = new passportJwt.Strategy({
+    issuer: process.env.KEYCLOAK_ISSUER || "http://localhost/auth/realms/erp",
+    secretOrKey: fs.readFileSync(path.resolve(__dirname, "../../certs/id_rsa.pub")),
+    jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
+}, (payload, done) => {
+    done(null, payload);
 });
 
 export {
-    keycloakStrategy
+    jwtStrategy
 };

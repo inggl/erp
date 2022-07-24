@@ -21,7 +21,7 @@ app.use(express.static("public"));
 app.use(helmet());
 app.use(passport.initialize());
 
-const port = process.env.PORT || 8087;
+const port = process.env.PORT || 8086;
 
 passport.use(jwtStrategy);
 

@@ -2907,6 +2907,7 @@ __metadata:
     ts-node: ^10.7.0
     typescript: ^4.6.4
     winston: ^3.7.2
+    zod: ^3.17.10
   languageName: unknown
   linkType: soft
 
@@ -3238,5 +3239,12 @@ __metadata:
   bin:
     z-schema: bin/z-schema
   checksum: 9afc0b8d4f75122fbbac8835b0398fc6ab3cfa3f68792e4e86edcd9be1e9ae9d982368a8ae25a4eeea6aad3ab35a24379b76e1525b105c23169c4f93b3185004
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.17.10":
+  version: 3.17.10
+  resolution: "zod@npm:3.17.10"
+  checksum: 5de630b8eceda3de211cce0a734b629f8c4ca4bc887127b0ebd57e9c9be23204725e60adf2faf1c5ccb9b660c7588a8b04f60dfda1ed8e67a789e93c15f838f1
   languageName: node
   linkType: hard

@@ -6,6 +6,7 @@
 - Winston
 - Morgan
 - Prisma
+- Zod
 
 ## Init
 ```shell

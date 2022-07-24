@@ -1,6 +1,6 @@
 # Analysis
-- Spring Cloud Task
-- Spring Batch
-- Spring Reactive Web Functional Endpoints
+- Spring Cloud Stream
+- Spring Cloud Function
+- Functional Endpoints
 - Spring Data JDBC
 - Multiple Data Sources configuration
